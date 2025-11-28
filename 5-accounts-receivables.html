@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Accounts Receivable</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Smooth transitions for interactive elements */
+        .tab-content {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .step-transition {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen p-6 flex items-center justify-center">
+
+    <div class="w-full max-w-6xl mx-auto">
+        
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">
+                Understanding Accounts Receivable
+            </h1>
+            <p class="text-lg text-gray-600">
+                The "Who Owes Us Money" Tracking System
+            </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-2 mb-6 bg-white rounded-lg p-2 shadow">
+            <button onclick="switchTab('overview')" id="tab-btn-overview" class="tab-btn flex-1 py-3 px-4 rounded-lg font-medium transition bg-blue-500 text-white">
+                Overview
+            </button>
+            <button onclick="switchTab('process')" id="tab-btn-process" class="tab-btn flex-1 py-3 px-4 rounded-lg font-medium transition bg-gray-100 text-gray-700 hover:bg-gray-200">
+                Step-by-Step Process
+            </button>
+            <button onclick="switchTab('connection')" id="tab-btn-connection" class="tab-btn flex-1 py-3 px-4 rounded-lg font-medium transition bg-gray-100 text-gray-700 hover:bg-gray-200">
+                How It Connects
+            </button>
+            <button onclick="switchTab('comparison')" id="tab-btn-comparison" class="tab-btn flex-1 py-3 px-4 rounded-lg font-medium transition bg-gray-100 text-gray-700 hover:bg-gray-200">
+                Key Comparisons
+            </button>
+        </div>
+
+        <div id="tab-overview" class="tab-content bg-white rounded-xl shadow-lg p-8 block">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                        🍋 Lemonade Stand Analogy
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+                            <p class="font-semibold text-yellow-800">Your Notebook:</p>
+                            <p class="text-gray-700 mt-1">
+                                "Tommy owes me $5 for 2 lemonades"<br/>
+                                "Sarah owes me $3 for 1 lemonade"
+                            </p>
+                        </div>
+                        <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded">
+                            <p class="font-semibold text-green-800">SAP System:</p>
+                            <p class="text-gray-700 mt-1">
+                                "Customer A owes $5,000 for Invoice #123"<br/>
+                                "Customer B owes $3,000 for Invoice #124"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                        💡 Why This Matters
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3 bg-blue-50 p-4 rounded-lg">
+                            <i data-lucide="trending-up" class="text-blue-500 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <p class="font-semibold text-gray-800">Track Cash Flow</p>
+                                <p class="text-sm text-gray-600">
+                                    Know exactly who owes you money and when to expect payment
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-purple-50 p-4 rounded-lg">
+                            <i data-lucide="check-circle" class="text-purple-500 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <p class="font-semibold text-gray-800">Stay Organized</p>
+                                <p class="text-sm text-gray-600">
+                                    No more lost invoices or forgotten payments
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-green-50 p-4 rounded-lg">
+                            <i data-lucide="dollar-sign" class="text-green-500 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <p class="font-semibold text-gray-800">Better Planning</p>
+                                <p class="text-sm text-gray-600">
+                                    Plan your business knowing when money will arrive
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-process" class="tab-content bg-white rounded-xl shadow-lg p-8 hidden">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+                The 3-Step Journey
+            </h2>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+                <button onclick="switchStep(0)" id="step-btn-0" class="step-btn flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition bg-blue-500 text-white shadow-lg scale-105">
+                    <i data-lucide="users" width="20"></i> Step 1
+                </button>
+                <button onclick="switchStep(1)" id="step-btn-1" class="step-btn flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition bg-gray-100 text-gray-700 hover:bg-gray-200">
+                    <i data-lucide="file-text" width="20"></i> Step 2
+                </button>
+                <button onclick="switchStep(2)" id="step-btn-2" class="step-btn flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition bg-gray-100 text-gray-700 hover:bg-gray-200">
+                    <i data-lucide="dollar-sign" width="20"></i> Step 3
+                </button>
+            </div>
+
+            <div class="max-w-3xl mx-auto">
+                
+                <div id="step-content-0" class="step-content block">
+                    <div class="bg-blue-500 text-white rounded-t-xl p-6">
+                        <div class="flex items-center gap-4">
+                            <i data-lucide="users" width="48" height="48"></i>
+                            <div>
+                                <h3 class="text-2xl font-bold">Step 1: Create Customer Profile</h3>
+                                <p class="text-lg opacity-90 mt-1">Set up customer information in the system</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-2 border-t-0 border-gray-200 rounded-b-xl p-6">
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded mb-6">
+                            <p class="text-sm font-semibold text-yellow-800">Real-World Example:</p>
+                            <p class="text-gray-700 mt-1">Like adding a contact to your phone with their details</p>
+                        </div>
+                        <div class="space-y-3">
+                            <p class="font-semibold text-gray-800">What Happens:</p>
+                            <div class="flex items-start gap-3"><div class="bg-blue-500 rounded-full p-1 mt-1"><i data-lucide="check-circle" width="16" class="text-white"></i></div><p class="text-gray-700">Customer name and address</p></div>
+                            <div class="flex items-start gap-3"><div class="bg-blue-500 rounded-full p-1 mt-1"><i data-lucide="check-circle" width="16" class="text-white"></i></div><p class="text-gray-700">Payment terms (when they need to pay)</p></div>
+                            <div class="flex items-start gap-3"><div class="bg-blue-500 rounded-full p-1 mt-1"><i data-lucide="check-circle" width="16" class="text-white"></i></div><p class="text-gray-700">Bank account information</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="step-content-1" class="step-content hidden">
+                    <div class="bg-purple-500 text-white rounded-t-xl p-6">
+                        <div class="flex items-center gap-4">
+                            <i data-lucide="file-text" width="48" height="48"></i>
+                            <div>
+                                <h3 class="text-2xl font-bold">Step 2: Send Invoice</h3>
+                                <p class="text-lg opacity-90 mt-1">Bill is created and sent to customer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-2 border-t-0 border-gray-200 rounded-b-xl p-6">
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded mb-6">
+                            <p class="text-sm font-semibold text-yellow-800">Real-World Example:</p>
+                            <p class="text-gray-700 mt-1">Like sending a bill after mowing someone's lawn</p>
+                        </div>
+                        <div class="space-y-3">
+                            <p class="font-semibold text-gray-800">What Happens:</p>
+                            <div class="flex items-start gap-3"><div class="bg-purple-500 rounded-full p-1 mt-1"><i data-lucide="check-circle" width="16" class="text-white"></i></div><p class="text-gray-700">Invoice automatically created from sales</p></div>
+                            <div class="flex items-start gap-3"><div class="bg-purple-500 rounded-full p-1 mt-1"><i data-lucide="check-circle" width="16" class="text-white"></i></div><p class="text-gray-700">Amount owed is recorded</p></div>
+                            <div class="flex items-start gap-3"><div class="bg-purple-500 rounded-full p-1 mt-1"><i data-lucide="check-circle" width="16" class="text-white"></i></div><p class="text-gray-700">Customer's account shows they owe money</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="step-content-2" class="step-content hidden">
+                    <div class="bg-green-500 text-white rounded-t-xl p-6">
+                        <div class="flex items-center gap-4">
+                            <i data-lucide="dollar-sign" width="48" height="48"></i>
+                            <div>
+                                <h3 class="text-2xl font-bold">Step 3: Receive Payment</h3>
+                                <p class="text-lg opacity-90 mt-1">Customer pays the bill</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-2 border-t-0 border-gray-200 rounded-b-xl p-6">
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded mb-6">
+                            <p class="text-sm font-semibold text-yellow-800">Real-World Example:</p>
+                            <p class="text-gray-700 mt-1">Like receiving payment via Venmo or cash</p>
+                        </div>
+                        <div class="space-y-3">
+                            <p class="font-semibold text-gray-800">What Happens:</p>
+                            <div class="flex items-start gap-3"><div class="bg-green-500 rounded-full p-1 mt-1"><i data-lucide="check-circle" width="16" class="text-white"></i></div><p class="text-gray-700">Money arrives in bank account</p></div>
+                            <div class="flex items-start gap-3"><div class="bg-green-500 rounded-full p-1 mt-1"><i data-lucide="check-circle" width="16" class="text-white"></i></div><p class="text-gray-700">Payment matched to invoice</p></div>
+                            <div class="flex items-start gap-3"><div class="bg-green-500 rounded-full p-1 mt-1"><i data-lucide="check-circle" width="16" class="text-white"></i></div><p class="text-gray-700">Customer's debt is cleared</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center gap-2 mt-8">
+                    <div id="progress-0" class="h-2 rounded-full transition-all w-12 bg-blue-500"></div>
+                    <div id="progress-1" class="h-2 rounded-full transition-all w-2 bg-gray-300"></div>
+                    <div id="progress-2" class="h-2 rounded-full transition-all w-2 bg-gray-300"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-connection" class="tab-content bg-white rounded-xl shadow-lg p-8 hidden">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+                How Everything Connects
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <div class="bg-blue-100 border-4 border-blue-500 rounded-xl p-6 mb-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="credit-card" class="text-blue-500" width="32"></i>
+                            <h3 class="text-xl font-bold text-blue-800">
+                                Accounts Receivable
+                            </h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">The detailed customer tracking system</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <p class="font-semibold text-blue-800">Customer A</p>
+                                <p class="text-sm text-gray-600">Owes: $5,000</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <p class="font-semibold text-blue-800">Customer B</p>
+                                <p class="text-sm text-gray-600">Owes: $3,000</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center mb-8">
+                        <div class="bg-blue-500 text-white px-6 py-2 rounded-full font-semibold">
+                            Automatically Updates ↓
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-100 border-4 border-gray-400 rounded-xl p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="file-text" class="text-gray-600" width="32"></i>
+                            <h3 class="text-xl font-bold text-gray-800">
+                                General Ledger
+                            </h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">The big picture summary</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <p class="font-semibold text-gray-800">Balance Sheet</p>
+                                <p class="text-sm text-gray-600">Total receivables: $8,000</p>
+                                <p class="text-xs text-gray-500 mt-1">(Money customers owe us)</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <p class="font-semibold text-gray-800">Profit & Loss</p>
+                                <p class="text-sm text-gray-600">Revenue: $8,000</p>
+                                <p class="text-xs text-gray-500 mt-1">(Money we earned)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-yellow-50 border-2 border-yellow-300 rounded-xl p-6">
+                    <p class="font-semibold text-yellow-800 mb-2">🏠 House Analogy:</p>
+                    <div class="grid md:grid-cols-2 gap-4 text-gray-700">
+                        <div>
+                            <p class="font-semibold text-blue-600">Accounts Receivable =</p>
+                            <p>Individual drawers in your filing cabinet, each labeled with a customer's name</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-600">General Ledger =</p>
+                            <p>The summary report on top showing total money owed by all customers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-comparison" class="tab-content bg-white rounded-xl shadow-lg p-8 hidden">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+                Key Comparisons
+            </h2>
+
+            <div class="mb-8">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    Accounts Receivable vs Accounts Payable
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="border-2 border-gray-300 p-4 text-left">Aspect</th>
+                                <th class="border-2 border-gray-300 p-4 text-left bg-blue-50">Accounts Receivable (AR)</th>
+                                <th class="border-2 border-gray-300 p-4 text-left bg-red-50">Accounts Payable (AP)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border-2 border-gray-300 p-4 font-semibold">Simple Definition</td>
+                                <td class="border-2 border-gray-300 p-4 bg-blue-50">Money OWED TO us</td>
+                                <td class="border-2 border-gray-300 p-4 bg-red-50">Money WE OWE to others</td>
+                            </tr>
+                            <tr>
+                                <td class="border-2 border-gray-300 p-4 font-semibold">Real Example</td>
+                                <td class="border-2 border-gray-300 p-4 bg-blue-50">Customer owes you $5,000 for products you sold</td>
+                                <td class="border-2 border-gray-300 p-4 bg-red-50">You owe supplier $5,000 for materials you bought</td>
+                            </tr>
+                            <tr>
+                                <td class="border-2 border-gray-300 p-4 font-semibold">Direction</td>
+                                <td class="border-2 border-gray-300 p-4 bg-blue-50">Money coming IN 💰➡️</td>
+                                <td class="border-2 border-gray-300 p-4 bg-red-50">Money going OUT ➡️💸</td>
+                            </tr>
+                            <tr>
+                                <td class="border-2 border-gray-300 p-4 font-semibold">Financial Type</td>
+                                <td class="border-2 border-gray-300 p-4 bg-blue-50">Asset (good thing!)</td>
+                                <td class="border-2 border-gray-300 p-4 bg-red-50">Liability (debt to pay)</td>
+                            </tr>
+                            <tr>
+                                <td class="border-2 border-gray-300 p-4 font-semibold">Who's Involved</td>
+                                <td class="border-2 border-gray-300 p-4 bg-blue-50">Customers (people who buy from you)</td>
+                                <td class="border-2 border-gray-300 p-4 bg-red-50">Vendors/Suppliers (people you buy from)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    Understanding Master Data Components
+                </h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="border-2 border-blue-300 rounded-lg p-4 bg-blue-50">
+                        <h4 class="font-bold text-blue-800 mb-2">General Data</h4>
+                        <p class="text-sm text-gray-700 mb-3">Shared by all departments</p>
+                        <ul class="text-sm space-y-1 text-gray-700">
+                            <li>• Name</li>
+                            <li>• Address</li>
+                            <li>• Phone number</li>
+                            <li>• Email</li>
+                        </ul>
+                        <p class="text-xs text-blue-600 mt-3 italic">Like basic contact info in your phone</p>
+                    </div>
+
+                    <div class="border-2 border-purple-300 rounded-lg p-4 bg-purple-50">
+                        <h4 class="font-bold text-purple-800 mb-2">Company Code Data</h4>
+                        <p class="text-sm text-gray-700 mb-3">Specific to accounting</p>
+                        <ul class="text-sm space-y-1 text-gray-700">
+                            <li>• Payment terms</li>
+                            <li>• Credit limit</li>
+                            <li>• Reconciliation account</li>
+                            <li>• Dunning terms</li>
+                        </ul>
+                        <p class="text-xs text-purple-600 mt-3 italic">Like payment settings for that customer</p>
+                    </div>
+
+                    <div class="border-2 border-green-300 rounded-lg p-4 bg-green-50">
+                        <h4 class="font-bold text-green-800 mb-2">Why Separated?</h4>
+                        <p class="text-sm text-gray-700 mb-3">Efficiency & flexibility</p>
+                        <ul class="text-sm space-y-1 text-gray-700">
+                            <li>• Change address once, updates everywhere</li>
+                            <li>• Different payment rules per country</li>
+                            <li>• Share data across departments</li>
+                        </ul>
+                        <p class="text-xs text-green-600 mt-3 italic">Like having one profile on social media, but different privacy settings per post</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    Financial Terms Made Simple
+                </h3>
+                <div class="space-y-3">
+                    <div class="bg-gradient-to-r from-blue-50 to-blue-100 border-l-4 border-blue-500 p-4 rounded">
+                        <p class="font-bold text-blue-800">Reconciliation Account</p>
+                        <p class="text-gray-700 text-sm mt-1">The bridge account that connects detailed customer records to the overall financial summary. Like a category label that groups all customer debts together.</p>
+                    </div>
+                    <div class="bg-gradient-to-r from-purple-50 to-purple-100 border-l-4 border-purple-500 p-4 rounded">
+                        <p class="font-bold text-purple-800">Payment Terms</p>
+                        <p class="text-gray-700 text-sm mt-1">The agreement on when payment is due (e.g., "Net 30" means pay within 30 days). Like saying "you can pay me back next month."</p>
+                    </div>
+                    <div class="bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-green-500 p-4 rounded">
+                        <p class="font-bold text-green-800">Dunning Terms</p>
+                        <p class="text-gray-700 text-sm mt-1">Rules for reminding customers about overdue payments. Like setting up automatic reminders when someone hasn't paid you back yet.</p>
+                    </div>
+                    <div class="bg-gradient-to-r from-orange-50 to-orange-100 border-l-4 border-orange-500 p-4 rounded">
+                        <p class="font-bold text-orange-800">Open Item</p>
+                        <p class="text-gray-700 text-sm mt-1">An unpaid invoice that's still waiting to be settled. Like an unchecked item on your to-do list that says "collect money from Tommy."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 text-center text-sm text-gray-600">
+            <p>💡 Remember: Accounts Receivable = Track who owes YOU money</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // --- Tabs Logic ---
+        function switchTab(tabId) {
+            // 1. Hide all contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(el => el.classList.add('hidden'));
+
+            // 2. Remove active styles from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-blue-500', 'text-white');
+                btn.classList.add('bg-gray-100', 'text-gray-700');
+            });
+
+            // 3. Show selected content
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+            // 4. Add active styles to clicked button
+            const activeBtn = document.getElementById('tab-btn-' + tabId);
+            activeBtn.classList.remove('bg-gray-100', 'text-gray-700');
+            activeBtn.classList.add('bg-blue-500', 'text-white');
+        }
+
+        // --- Steps Logic ---
+        function switchStep(stepIndex) {
+            // 1. Reset all buttons
+            const buttons = document.querySelectorAll('.step-btn');
+            buttons.forEach((btn, idx) => {
+                if (idx === stepIndex) {
+                    btn.classList.remove('bg-gray-100', 'text-gray-700');
+                    btn.classList.add('bg-blue-500', 'text-white', 'shadow-lg', 'scale-105');
+                } else {
+                    btn.classList.add('bg-gray-100', 'text-gray-700');
+                    btn.classList.remove('bg-blue-500', 'text-white', 'shadow-lg', 'scale-105');
+                }
+            });
+
+            // 2. Show correct content
+            const contents = document.querySelectorAll('.step-content');
+            contents.forEach((content, idx) => {
+                if (idx === stepIndex) {
+                    content.classList.remove('hidden');
+                    content.classList.add('block');
+                } else {
+                    content.classList.add('hidden');
+                    content.classList.remove('block');
+                }
+            });
+
+            // 3. Update Progress Bars
+            const progressBars = [
+                document.getElementById('progress-0'),
+                document.getElementById('progress-1'),
+                document.getElementById('progress-2')
+            ];
+
+            progressBars.forEach((bar, idx) => {
+                if (idx === stepIndex) {
+                    bar.classList.remove('w-2', 'bg-gray-300');
+                    bar.classList.add('w-12', 'bg-blue-500');
+                } else {
+                    bar.classList.remove('w-12', 'bg-blue-500');
+                    bar.classList.add('w-2', 'bg-gray-300');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
